@@ -13,7 +13,6 @@ style_input = st.selectbox("Select Explnation Style", ["Beginner-Friendly", "Tec
 
 length_input = st.selectbox("Select Explanation length", ["Short (1-2 paragrpahs)", "Medium (3-5 paragrpahs)", "large (Detailed Explanation)"])
 
-
 prompt = PromptTemplate(
     template="""
 You are an expert AI researcher and technical educator.
