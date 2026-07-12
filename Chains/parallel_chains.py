@@ -1,7 +1,7 @@
 from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-# from langchain.schema.runnable import RunnableParallel
+from langchain.schema.runnable import RunnableParallel
 
 llm = HuggingFaceEndpoint(
     repo_id="Qwen/Qwen2.5-7B-Instruct",
@@ -32,6 +32,11 @@ parallel_chain = ({
     'notes': prompt1 | model1 | parser,
     'quiz': prompt2 | model2 | parser
 })
+
+# parallel_chain = RunnableParallel(
+#     notes=prompt1 | model1 | parser,
+#     quiz=prompt2 | model2 | parser
+# )
 
 merge_chain = prompt3 | model1 | parser
 
