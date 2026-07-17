@@ -8,8 +8,7 @@ llm = HuggingFaceEndpoint(
     task="text-generation"
 )
 
-model1 = ChatHuggingFace(llm=llm)
-model2 = ChatHuggingFace(llm=llm)
+model = ChatHuggingFace(llm=llm)
 
 prompt1 = PromptTemplate(
     template='Generate short and simple notes from the following text \n {text}',
@@ -29,11 +28,11 @@ prompt3 = PromptTemplate(
 parser = StrOutputParser()
 
 parallel_chain = RunnableParallel(
-    notes=prompt1 | model1 | parser,
-    quiz=prompt2 | model2 | parser
+    notes=prompt1 | model | parser,
+    quiz=prompt2 | model | parser
 )
 
-merge_chain = prompt3 | model1 | parser
+merge_chain = prompt3 | model | parser
 
 chain = parallel_chain | merge_chain
 
