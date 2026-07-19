@@ -1,4 +1,4 @@
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader, CSVLoader, WebBaseLoader, SeleniumURLLoader
 from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -17,9 +17,11 @@ prompt = PromptTemplate(
 
 parser = StrOutputParser()
 
-loader = PyPDFLoader('OS_Full_Notes.pdf')
+loader = PyPDFLoader('OS_Full_Notes.pdf') # just works with the textual content pdf. It does not work with scanned image pdf
 
-docs = loader.load()
+docs = loader.load() # use this when working with small number of pdfs
+# use laze_load when working with multiple pdfs. 
+# lazy_load loads pdf one by one and perform operation one by one and get removed from the memory
 
 # print(type(docs)) # List class 
 # print(docs) # list of document object
